@@ -1,6 +1,0 @@
-num_entries = int(input('How many entries do you want to enter? '))
-file_variable = open('steps_count.txt','w')
-for num in range(1, num_entries + 1):
-  steps = input('#{num} How many steps would you like to add to the file?  ')
-  file_variable.write(f'{steps}\n')
-file_variable.close()
