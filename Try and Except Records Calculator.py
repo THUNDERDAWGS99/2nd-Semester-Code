@@ -1,7 +1,7 @@
 # Anthony Woods
 # Period 7
-# 
-# Time Spent: 4 Weeks
+# Try/Except Records using a recoded calculator from semester 1
+# Time Spent: 1 day
 
 
 import time
