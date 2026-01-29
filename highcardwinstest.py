@@ -1,4 +1,5 @@
 import random
+import time
 
 #creates tuple and deckof the multiple cards
 suits = ("Hearts", "Diamonds", "Clubs", "Spades")
@@ -28,22 +29,30 @@ while cardswaps > 0:
     if choice == "yes":
         new_card = random.choice(deck_list)
         deck_list.remove(new_card)
+        print(" ")
         print(f"Your new card is: {new_card}")
         user_card = new_card
         cardswaps -= 1
     else:
         break
-
+print(" ")
 print(f"Your card is: {user_card}")
 
 #computers card
 computer_card = random.choice(deck_list)
+print(" ")
 print(f"Computer drew: {computer_card}")
 
 #determings the winner based on value of the cards
 if card_value(user_card) > card_value(computer_card):
-    print("You win")
+    time.sleep(1)
+    print(" ")
+    print("You win :D")
 elif card_value(user_card) < card_value(computer_card):
-    print("Computer wins")
+    time.sleep(1)
+    print(" ")
+    print("Computer wins >:(") 
 else:
-    print("Tie")
+    time.sleep(1)
+    print(" ")
+    print("Tie :(")
