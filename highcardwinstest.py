@@ -1,10 +1,9 @@
 import random
 
-#creates tuple of multiple cards
+#creates tuple and deckof the multiple cards
 suits = ("Hearts", "Diamonds", "Clubs", "Spades")
 ranks = ("2", "3", "4", "5", "6", "7", "8", "9", "10",
          "Jack", "Queen", "King", "Ace")
-
 deck = tuple(f"{rank} of {suit}" for suit in suits for rank in ranks)
 
 #turn the tuple into a a list so cards can be removed
@@ -23,7 +22,6 @@ def card_value(card):
 user_card = random.choice(deck_list)
 deck_list.remove(user_card)
 print(f"You drew: {user_card}")
-
 cardswaps = 3
 while cardswaps > 0:
     choice = input("Do you want to redraw your card (yes/no): ").lower()
