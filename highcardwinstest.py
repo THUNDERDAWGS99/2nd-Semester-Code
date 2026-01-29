@@ -7,10 +7,10 @@ ranks = ("2", "3", "4", "5", "6", "7", "8", "9", "10",
 
 deck = tuple(f"{rank} of {suit}" for suit in suits for rank in ranks)
 
-# Convert tuple to list so we can remove cards
+#turn the tuple into a a list so cards can be removed
 deck_list = list(deck)
 
-# Function to get card value for comparison
+#function to get value of card so they can be compared
 def card_value(card):
     rank = card.split()[0]
     order = {
@@ -25,9 +25,8 @@ deck_list.remove(user_card)
 print(f"You drew: {user_card}")
 
 cardswaps = 3
-
 while cardswaps > 0:
-    choice = input("Do you want to redraw? (yes/no): ").lower()
+    choice = input("Do you want to redraw your card (yes/no): ").lower()
     if choice == "yes":
         new_card = random.choice(deck_list)
         deck_list.remove(new_card)
@@ -37,16 +36,16 @@ while cardswaps > 0:
     else:
         break
 
-print(f"Your final card: {user_card}")
+print(f"Your card is: {user_card}")
 
-# --- Computer draws a card ---
+#computers card
 computer_card = random.choice(deck_list)
 print(f"Computer drew: {computer_card}")
 
-# --- Determine winner ---
+#determings the winner based on value of the cards
 if card_value(user_card) > card_value(computer_card):
-    print("You win!")
+    print("You win")
 elif card_value(user_card) < card_value(computer_card):
-    print("Computer wins!")
+    print("Computer wins")
 else:
-    print("It's a tie!")
+    print("Tie")
