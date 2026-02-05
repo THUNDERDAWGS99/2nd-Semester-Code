@@ -1,3 +1,4 @@
+#problem narrative
 """
 Problem Narrative:
 A large worldwide news agency published articles a few years ago based on the scientific
@@ -15,7 +16,6 @@ Your task is to write a program that:
 """
 
 #the program the news agent uses to find and replace things
-
 print("Text Editor")
 
 text = input("Enter the original text:\n")
@@ -23,6 +23,5 @@ find_word = input("Enter the word or phrase you want to find and replace: ")
 replace_word = input("Enter the replacement text here: ")
 
 updated_text = text.replace(find_word, replace_word)
-
 print("\nUpdated the text.:")
 print(updated_text)
