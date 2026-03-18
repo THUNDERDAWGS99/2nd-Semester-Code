@@ -122,6 +122,10 @@ def virtual_realm_online():
                 print(f"Enemy HP: {enemy['hp']}")
             else:
                 print("Unknown combat command.")
+                time.sleep(2)
+                for _ in range(2):
+                    sys.stdout.write("\033[F")
+                    sys.stdout.write("\033[K")
 
         return True
 
@@ -236,18 +240,95 @@ def virtual_realm_online():
 #   SECOND GAME PLACEHOLDER
 # ============================
 def game_two():
-    print("\n--- SECOND GAME PLACEHOLDER ---")
-    input("Press Enter to return to menu...")
+    import random
+    import time
+
+    # Create deck
+    suits = ("Hearts", "Diamonds", "Clubs", "Spades")
+    ranks = ("2", "3", "4", "5", "6", "7", "8", "9", "10",
+             "Jack", "Queen", "King", "Ace")
+    deck = [f"{rank} of {suit}" for suit in suits for rank in ranks]
+    deck_list = deck.copy()
+
+    # Card value function
+    def card_value(card):
+        rank = card.split()[0]
+        suit = card.split()[-1]
+        order = {
+            "2":2, "3":3, "4":4, "5":5, "6":6, "7":7, "8":8, "9":9, "10":10,
+            "Jack":11, "Queen":12, "King":13, "Ace":14
+        }
+        suit_order = {
+            "Clubs":1,
+            "Diamonds":2,
+            "Hearts":3,
+            "Spades":4
+        }
+        return (order[rank], suit_order[suit])
+
+    print("\n=== CARD DUEL ===")
+    print("Pick a card from your hand\n")
+
+    # Player hand
+    player_hand = random.sample(deck_list, 5)
+    for card in player_hand:
+        deck_list.remove(card)
+
+    print("Your hands cards:")
+    for i, card in enumerate(player_hand, 1):
+        print(f"{i}. {card}")
+
+    # Player chooses card
+    while True:
+        try:
+            print()
+            choice = int(input("Choose a card number (1-5): "))
+            if 1 <= choice <= 5:
+                user_card = player_hand[choice - 1]
+                break
+        except:
+            pass
+        print("Choose only 1 - 5")
+
+    print()
+    print(f"You chose: {user_card}")
+
+    # Computer hand + choice
+    computer_hand = random.sample(deck_list, 5)
+    for card in computer_hand:
+        deck_list.remove(card)
+
+    computer_card = random.choice(computer_hand)
+    print()
+    print(f"Computer chose: {computer_card}")
+
+    # Determine winner
+    print()
+    time.sleep(1)
+
+    if card_value(user_card) > card_value(computer_card):
+        print("You win")
+    elif card_value(user_card) < card_value(computer_card):
+        print("The Computer has won")
+    else:
+        print("Its a tie")
+
+    print("\nPress Enter to return to the main hub")
+    input()
+    for _ in range(21):
+                        sys.stdout.write("\033[F")
+                        sys.stdout.write("\033[K")
+
 
 # ============================
 #         MAIN MENU
 # ============================
 while True:
     print("============================")
-    print("         GAME HUB           ")
+    print("     HACKATHON GAME HUB     ")
     print("============================")
     print(" 1. Virtual Realm Online    ")
-    print(" 2. [Your Second Game]      ")
+    print(" 2. Card Duel               ")
     print(" Q. Exit                    ")
     print("============================")
 
@@ -258,8 +339,8 @@ while True:
         virtual_realm_online()
     elif choice == '2':
         game_two()
-    elif choice == 'q':
-        print("System Offline.")
+    elif choice == '3':
+        print("Closing")
         break
     else:
-        print("Invalid Command.")
+        print("Choose 1 - 3 only")  
