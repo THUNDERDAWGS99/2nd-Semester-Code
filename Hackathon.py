@@ -2,13 +2,18 @@ import random
 import time
 import sys
 
+game_records = []
+
 def clear_lines(n):
     for _ in range(n):
         sys.stdout.write("\033[F\033[K")
+        
+def clear_screen():
+    sys.stdout.write("\033[2J\033[H")
 
-# ============================
-#   NEW VIRTUAL REALM ONLINE
-# ============================
+
+#virtual realm online
+
 def virtual_realm_online():
 
     print("VIRTUAL REALM ONLINE")
@@ -115,6 +120,7 @@ def virtual_realm_online():
 
                 if player["hp"] <= 0:
                     print("Your HP reached zero. You have died. GAME OVER.")
+                    game_records.append("Virtual Realm Online: Player died in battle.")
                     return False
 
             elif action == "LOOK":
@@ -231,14 +237,15 @@ def virtual_realm_online():
 
         elif cmd == "QUIT":
             print("Exiting the interface. Connection closed.")
+            game_records.append("Virtual Realm Online: Player survived and exited the realm.")
             break
 
         else:
             print("Unknown command.")
 
-# ============================
-#   SECOND GAME PLACEHOLDER
-# ============================
+
+#SECOND GAME 
+
 def game_two():
     import random
     import time
@@ -265,9 +272,11 @@ def game_two():
             "Spades":4
         }
         return (order[rank], suit_order[suit])
-
-    print("\n=== CARD DUEL ===")
-    print("Pick a card from your hand\n")
+        
+    print("============================")
+    print("        CARD DUEL")
+    print(' ')
+    print(" Pick a card from your hand\n")
 
     # Player hand
     player_hand = random.sample(deck_list, 5)
@@ -308,39 +317,54 @@ def game_two():
 
     if card_value(user_card) > card_value(computer_card):
         print("You win")
+        game_records.append("Card Duel: Player won the duel.")
     elif card_value(user_card) < card_value(computer_card):
         print("The Computer has won")
+        game_records.append("Card Duel: Player lost the duel.")
     else:
         print("Its a tie")
+        game_records.append("Card Duel: The duel ended in a tie.")
 
     print("\nPress Enter to return to the main hub")
     input()
-    for _ in range(21):
-                        sys.stdout.write("\033[F")
-                        sys.stdout.write("\033[K")
+    clear_screen()
 
 
-# ============================
-#         MAIN MENU
-# ============================
+def view_records():
+    print("\n===== GAME RECORDS =====")
+    if not game_records:
+        print("No records yet.")
+    else:
+        for i, record in enumerate(game_records, 1):
+            print(f"{i}. {record}")
+    print("\nPress Enter to return to the main hub")
+    input()
+    for _ in range(12):
+        sys.stdout.write("\033[F")
+        sys.stdout.write("\033[K")
+
+#main menu
 while True:
     print("============================")
     print("     HACKATHON GAME HUB     ")
     print("============================")
     print(" 1. Virtual Realm Online    ")
     print(" 2. Card Duel               ")
+    print(" 3. View Game Records       ")
     print(" Q. Exit                    ")
     print("============================")
 
     choice = input(" Choose your path: ").strip().lower()
-    clear_lines(8)
+    clear_screen()
 
     if choice == '1':
         virtual_realm_online()
     elif choice == '2':
         game_two()
     elif choice == '3':
+        view_records()
+    elif choice == 'q':
         print("Closing")
         break
     else:
-        print("Choose 1 - 3 only")  
+        print("Choose 1 - 3 only")
