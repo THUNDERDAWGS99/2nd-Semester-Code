@@ -38,10 +38,10 @@ class Library:
 
 #main.py
 def main():
-    # Create library
+    #library
     my_library = Library()
 
-    # Add books
+    #add books
     book1 = Book("Dog man", "Dav Pilky")
     book2 = Book("Captain underpants", "Dav Pilky")
     my_library.add_book(book1)
@@ -71,6 +71,5 @@ def main():
     print(my_library.show_available_books())
 
 
-# Run the program
 if __name__ == "__main__":
     main()
