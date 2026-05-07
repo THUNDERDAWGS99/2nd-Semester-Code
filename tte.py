@@ -5,7 +5,6 @@ from tkinter import messagebox
 
 
 def show_message():
-    """Callback for the listbox selection and message box button."""
     try:
         selection = listbox.get(listbox.curselection())
         output_label.config(text=f"Selected: {selection}")
