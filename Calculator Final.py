@@ -4,6 +4,9 @@ from tkinter import *
 from tkinter import simpledialog
 
 
+
+
+
 #base class for ui and so it actually works and is able to show on screen
 class CalculatorApp:
     def __init__(self, root):
@@ -17,7 +20,7 @@ class CalculatorApp:
 
 #main ui
     def setup_ui(self):
-        self.root.title("Anthony's Calculator")
+        self.root.title("Anthonys Calculator")
         self.root.geometry("360x540")
         self.root.resizable(False, False)
         self.root.configure(bg="#1e1e2e")
